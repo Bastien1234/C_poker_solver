@@ -1,0 +1,4 @@
+
+
+prog:
+	gcc -std=c17 *.c -o prog

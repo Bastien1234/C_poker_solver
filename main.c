@@ -47,7 +47,7 @@ int main()
     
     // root
     
-    struct node root = { .currentPot = 100, .playerPosition = -1, .nActions = 2, .nSubnodes = 4 };
+    struct node root = { .currentPot = 100, .playerPosition = -1, .nActions = 2, .nSubnodes = 4, .nNextNodes = 2 };
     root.actions[0] = -1;
     root.actions[1] = 25;
     
@@ -59,8 +59,8 @@ int main()
     
     // level 2
     
-    struct node afterCheck = { .currentPot = 100, .playerPosition = 1, .nActions = 1 };
-    struct node afterBet = { .currentPot = 125, .playerPosition = 1, .nActions = 2 };
+    struct node afterCheck = { .currentPot = 100, .playerPosition = 1, .nActions = 1, .nNextNodes = 0 };
+    struct node afterBet = { .currentPot = 125, .playerPosition = 1, .nActions = 2, .nNextNodes = 0 };
     
     afterCheck.actions[0] = 0; // only check back possible
     
@@ -86,13 +86,24 @@ int main()
     for (int j=0; j<ITERATIONS; j++)
     {
         struct Queue* nodeQueue = newQueue(15);
-        enqueue(&nodeQueue, &root);
+        enqueue(nodeQueue, &root);
         
-        struct node baseNode = &root;
+        struct node baseNode = root;
         
-        while (nodeQueue.size > 0)
+        while (nodeQueue->size > 0)
         {
             // add next nodes
+            for (int i=0; i<baseNode.nNextNodes; i++)
+            {
+                if (baseNode.nextNodes[i] != NULL)
+                {
+                    printf("Has things");
+                }
+
+                else {
+                    printf("does not ...");
+                }
+            }
             
             
         }
